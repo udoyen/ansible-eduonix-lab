@@ -1,45 +1,34 @@
 ---
 # tasks file for mongodb
 - include_vars: secrets.yml
-- name: Import the public key used by the package management system
-  apt_key: 
-    url: "https://www.mongodb.org/static/pgp/server-5.0.asc"
-    state: present
-- name: Create a list file for Mongodb
-  shell:
-     "echo \"deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse\" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list"
-  register: shellcmd
-  tags: makelist
-- name: Update Ubuntu
-  apt:  update_cache=yes force_apt_get=yes cache_valid_time=3600
 - name: Installing mongodb
   apt:
-   name: mongodb-org
+   name: mongodb
    state: present
 - name: Start and enable the engine
   service:
-    name: mongod
+    name: mongodb
     state: started
     enabled: yes
 - name: Configure Mongodb to accept outside connections
   lineinfile:
-    path: /etc/mongod.conf
+    path: /etc/mongodb.conf
     regexp: '^#?bind_ip = 127.0.0.1'
     line: '#bind_ip = 127.0.0.1'
   notify:
-     - restart mongod
+     - restart mongodb
 - name: Update Ubuntu
   apt:  update_cache=yes force_apt_get=yes cache_valid_time=3600
 - name: Install Python pip
   apt:
-   name: python3-pip
-   state: present
+    name: python3-pip
+    state: present
 - name: Install pymongo package
   pip:
-   name: pymongo
-   state: present
+    name: pymongo==3.12.1
+    state: present
 - name: Is authentication enabled?
-  command: grep "^auth = true" /etc/mongod.conf
+  command: grep "^auth = true" /etc/mongodb.conf
   register: auth
   ignore_errors: yes
 - name: Add an administrator to the db
@@ -52,17 +41,17 @@
   when: auth.rc == 1
 - name: Enable authentication
   lineinfile:
-    path: /etc/mongod.conf
+    path: /etc/mongodb.conf
     regexp: '^#?auth \= true'
     line: 'auth = true'
   notify:
-    - restart mongod
+    - restart mongodb
 - name: Create the application user
   mongodb_user:
     login_user: root
     login_password: "{{ dbpass }}"
-    database: "{{ dbname }}"
     name: "{{ appdbuser }}"
     password: "{{ appdbpass }}"
+    database: "{{ dbname }}"
     roles: dbOwner
     state: present
