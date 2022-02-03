@@ -13,8 +13,8 @@
 - name: Configure Mongodb to accept outside connections
   lineinfile:
     path: /etc/mongodb.conf
-    regexp: '^#?bind_ip = 127.0.0.1'
-    line: '#bind_ip = 127.0.0.1'
+    regexp: '^#?bind_ip = 127.0.0.1.*'
+    line: 'bind_ip = 127.0.0.1,192.168.56.11'
   notify:
      - restart mongodb
 - name: Update Ubuntu
