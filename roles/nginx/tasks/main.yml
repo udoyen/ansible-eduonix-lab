@@ -14,3 +14,5 @@
     dest: /usr/share/www/html/
 - name: Start and enable Nginx
   service: name=nginx state=started enabled=yes
+- name: Restart server
+  service: name=nginx state=restarted

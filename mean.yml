@@ -3,7 +3,11 @@
   become: yes
   roles:
     - mongodb
-#- hosts: app
-#  become: yes
-# roles:
-#   - node
+- hosts: app
+  become: yes
+  roles:
+    - node
+- hosts: web
+  become: yes
+  roles:
+    - nginx
