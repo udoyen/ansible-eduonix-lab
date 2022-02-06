@@ -1,0 +1,107 @@
+[2022-02-05T13:00:22+00:00] WARN: *****************************************
+[2022-02-05T13:00:22+00:00] WARN: Did not find config file: /etc/chef/client.rb. Using command line options instead.
+[2022-02-05T13:00:22+00:00] WARN: *****************************************
+[2022-02-05T13:00:22+00:00] DEBUG: Reading products and relationships...
+[2022-02-05T13:00:22+00:00] DEBUG: Successfully read products and relationships
+[2022-02-05T13:00:22+00:00] DEBUG: Searching for the following licenses: ["infra-client", "inspec"]
+[2022-02-05T13:00:22+00:00] DEBUG: Found license chef_infra_client at /etc/chef/accepted_licenses/chef_infra_client
+[2022-02-05T13:00:22+00:00] DEBUG: Found license inspec at /etc/chef/accepted_licenses/inspec
+[2022-02-05T13:00:22+00:00] DEBUG: Missing licenses remaining: []
+[2022-02-05T13:00:22+00:00] DEBUG: All licenses present
+[2022-02-05T13:00:22+00:00] DEBUG: Running Ohai with the following configuration: {:logger=>Chef::Log}
+Starting Chef Infra Client, version 15.14.0[0m
+[2022-02-05T13:00:23+00:00] INFO: *** Chef Infra Client 15.14.0 ***
+[2022-02-05T13:00:23+00:00] INFO: Platform: x86_64-linux
+[2022-02-05T13:00:23+00:00] INFO: Chef-client pid: 41716
+[2022-02-05T13:00:23+00:00] DEBUG: Chef-client request_id: 0204ab8b-3eff-46e0-92c6-c6cf3c39c0fc
+[2022-02-05T13:00:23+00:00] DEBUG: Running Ohai with the following configuration: {:logger=>Chef::Log}
+[2022-02-05T13:00:23+00:00] DEBUG: The plugin path /etc/chef/ohai/plugins does not exist. Skipping...
+[2022-02-05T13:00:24+00:00] DEBUG: Plugin Zpools: Could not shell_out "zpool list -H -o name,size,alloc,free,cap,dedup,health,version". Skipping plugin.
+Creating a new client identity for chef using the validator key.[0m
+[2022-02-05T13:00:24+00:00] INFO: Client key /etc/chef/client.pem is not present - registering
+[2022-02-05T13:00:24+00:00] WARN: Failed to read the private key /etc/chef/validation.pem: #<Errno::ENOENT: No such file or directory @ rb_sysopen - /etc/chef/validation.pem>
+[0m
+================================================================================[0m
+[31mChef encountered an error attempting to create the client "chef"[0m
+================================================================================[0m
+
+[0mPrivate Key Not Found:[0m
+----------------------[0m
+Your private key could not be loaded. If the key file exists, ensure that it is
+[0mreadable by Chef Infra Client.
+[0m
+[0mRelevant Config Settings:[0m
+-------------------------[0m
+validation_key "/etc/chef/validation.pem"
+[0m
+[0mSystem Info:[0m
+------------[0m
+chef_version=15.14.0
+[0mruby=ruby 2.6.6p146 (2020-03-31 revision 67876) [x86_64-linux]
+[0mprogram_name=/usr/bin/chef-client
+[0mexecutable=/opt/chefdk/bin/chef-client[0m
+
+[0m[0m
+Running handlers:[0m
+[2022-02-05T13:00:24+00:00] ERROR: Running exception handlers
+Running handlers complete
+[0m[2022-02-05T13:00:24+00:00] ERROR: Exception handlers complete
+Chef Infra Client failed. 0 resources updated in 01 seconds[0m
+[2022-02-05T13:00:24+00:00] WARN: Failed to read the private key /etc/chef/client.pem: #<Errno::ENOENT: No such file or directory @ rb_sysopen - /etc/chef/client.pem>
+[2022-02-05T13:00:24+00:00] WARN: Error while reporting run start to Data Collector. URL: https://localhost:443/data-collector Exception: No HTTP Code -- I cannot read /etc/chef/client.pem, which you told me to use to sign requests! 
+[2022-02-05T13:00:24+00:00] WARN: Failed to read the private key /etc/chef/client.pem: #<Errno::ENOENT: No such file or directory @ rb_sysopen - /etc/chef/client.pem>
+[2022-02-05T13:00:24+00:00] WARN: Error while reporting run start to Data Collector. URL: https://localhost:443/data-collector Exception: No HTTP Code -- I cannot read /etc/chef/client.pem, which you told me to use to sign requests! 
+[2022-02-05T13:00:24+00:00] FATAL: Stacktrace dumped to /var/chef/cache/chef-stacktrace.out
+[2022-02-05T13:00:24+00:00] FATAL: Please provide the contents of the stacktrace.out file if you file a bug report
+[2022-02-05T13:00:24+00:00] DEBUG: Chef::Exceptions::PrivateKeyMissing: I cannot read /etc/chef/validation.pem, which you told me to use to sign requests!
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/http/authenticator.rb:98:in `rescue in load_signing_key'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/http/authenticator.rb:84:in `load_signing_key'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/http/authenticator.rb:42:in `initialize'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/http.rb:99:in `new'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/http.rb:99:in `block in initialize'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/http.rb:98:in `each'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/http.rb:98:in `initialize'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/server_api.rb:40:in `initialize'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/api_client/registration.rb:160:in `new'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/api_client/registration.rb:160:in `http_api'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/api_client/registration.rb:106:in `create'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/api_client/registration.rb:96:in `create_or_update'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/api_client/registration.rb:59:in `run'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/client.rb:675:in `register'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/client.rb:262:in `run'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/application.rb:320:in `run_with_graceful_exit_option'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/application.rb:296:in `block in run_chef_client'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/local_mode.rb:42:in `with_server_connectivity'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/application.rb:279:in `run_chef_client'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/application/base.rb:330:in `run_application'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/application.rb:68:in `run'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-bin-15.14.0/bin/chef-client:25:in `<top (required)>'
+/usr/bin/chef-client:342:in `load'
+/usr/bin/chef-client:342:in `<main>'
+
+>>>> Caused by Errno::ENOENT: No such file or directory @ rb_sysopen - /etc/chef/validation.pem
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/http/authenticator.rb:86:in `read'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/http/authenticator.rb:86:in `load_signing_key'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/http/authenticator.rb:42:in `initialize'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/http.rb:99:in `new'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/http.rb:99:in `block in initialize'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/http.rb:98:in `each'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/http.rb:98:in `initialize'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/server_api.rb:40:in `initialize'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/api_client/registration.rb:160:in `new'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/api_client/registration.rb:160:in `http_api'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/api_client/registration.rb:106:in `create'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/api_client/registration.rb:96:in `create_or_update'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/api_client/registration.rb:59:in `run'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/client.rb:675:in `register'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/client.rb:262:in `run'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/application.rb:320:in `run_with_graceful_exit_option'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/application.rb:296:in `block in run_chef_client'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/local_mode.rb:42:in `with_server_connectivity'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/application.rb:279:in `run_chef_client'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/application/base.rb:330:in `run_application'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-15.14.0/lib/chef/application.rb:68:in `run'
+/opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/chef-bin-15.14.0/bin/chef-client:25:in `<top (required)>'
+/usr/bin/chef-client:342:in `load'
+/usr/bin/chef-client:342:in `<main>'
+[2022-02-05T13:00:24+00:00] FATAL: Chef::Exceptions::PrivateKeyMissing: I cannot read /etc/chef/validation.pem, which you told me to use to sign requests!
